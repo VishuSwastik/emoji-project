@@ -1,68 +1,58 @@
-let searchemg = document.getElementById("search");
-let displayEmg = document.getElementById("display-emoji");
-let filterEmg = document.getElementById("filter-emogi");
+const emojiSearchInput = document.getElementById("emoji-search");
+const emojiDisplayArea = document.getElementById("emoji-display");
+const emojiFilterContainer = document.getElementById("emoji-filter");
 
-filterEmg.addEventListener("click", (e) => {
-    const button = e.target.closest(".filter-btn");
+emojiFilterContainer.addEventListener("click", (event) => {
+    const clickedButton = event.target.closest(".filter-button");
     
-    if (button) {
-        e.preventDefault();
-        const category = button.getAttribute("data-category");
-        filterFunction(category);
+    if (clickedButton) {
+        event.preventDefault();
+        const selectedCategory = clickedButton.getAttribute("data-category");
+        applyFilter(selectedCategory);
     }
 });
 
-let filterFunction = (value) => {
-    let filteredData;
+const applyFilter = (category) => {
+    let filteredEmojis;
 
-    if (value.toLowerCase() === "all") {
-        filteredData = emojiList;
+    if (category.toLowerCase() === "all") {
+        filteredEmojis = emojiList;
     } else {
-        filteredData = emojiList.filter(e => {
-            if (e.description.toLowerCase().includes(value.toLowerCase())) {
-                return true;
-            }
-            if (e.aliases.some(alias => alias.toLowerCase().startsWith(value.toLowerCase()))) {
-                return true;
-            }
-            if (e.tags.some(tag => tag.toLowerCase().startsWith(value.toLowerCase()))) {
-                return true;
-            }
-            return false;
+        filteredEmojis = emojiList.filter(emoji => {
+            return emoji.description.toLowerCase().includes(category.toLowerCase()) ||
+                   emoji.aliases.some(alias => alias.toLowerCase().startsWith(category.toLowerCase())) ||
+                   emoji.tags.some(tag => tag.toLowerCase().startsWith(category.toLowerCase()));
         });
     }
 
-    displayEmoji(filteredData);
+    renderEmojis(filteredEmojis);
 };
 
-
-function displayEmoji(value = emojiList) {
-    displayEmg.innerHTML = "";
-    value.forEach(e => {
-        let newEmojiContainer = document.createElement("div");
-        let emoji_box = document.createElement("span");
-        emoji_box.style.width = "50px";
-        emoji_box.style.fontSize = "50px";
-        emoji_box.innerText = e.emoji;
-        emoji_box.classList.add('animate__animated', 'animate__backInDown');
-        emoji_box.style.cursor = "pointer";
-        displayEmg.append(emoji_box);
+const renderEmojis = (emojis = emojiList) => {
+    emojiDisplayArea.innerHTML = "";
+    emojis.forEach(emoji => {
+        const emojiElement = document.createElement("div");
+        const emojiCharacter = document.createElement("span");
+        emojiCharacter.style.width = "50px";
+        emojiCharacter.style.fontSize = "50px";
+        emojiCharacter.innerText = emoji.emoji;
+        emojiCharacter.classList.add('animate__animated', 'animate__backInDown');
+        emojiCharacter.style.cursor = "pointer";
+        emojiDisplayArea.append(emojiCharacter);
     });
-}
+};
 
 window.addEventListener("load", () => {
-    displayEmoji(emojiList);
+    renderEmojis(emojiList);
 });
 
-searchemg.addEventListener('keyup', (event) => {
-    let value = event.target.value;
-    filterFunction(event.target.value);
+emojiSearchInput.addEventListener('keyup', (event) => {
+    const searchValue = event.target.value;
+    applyFilter(searchValue);
 });
 
-displayEmg.addEventListener("click", (e) => {
-     navigator.clipboard.writeText(e.target.innerText);
-
-     alert("Copied to clipboard");
-    console.log( e.target);
+emojiDisplayArea.addEventListener("click", (event) => {
+    navigator.clipboard.writeText(event.target.innerText);
+    alert("Emoji copied to clipboard!");
+    console.log(event.target);
 });
-

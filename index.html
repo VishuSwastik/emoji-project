@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,31 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="style.css">
-    <title>Emoji project</title>
+    <title>Emoji Explorer</title>
 
 </head>
 <body>
-    <div class="main">
+    <div class="container">
         <h1>Emojee - Emoji 🔍 Application</h1>
-        <br>
-        <div class="navbar">
-        
-            <div id="filter-emogi">
-                <button class="filter-btn" data-category="all">All</button>
-                <button class="filter-btn" data-category="face">Face</button>
-                <button class="filter-btn" data-category="heart">Heart</button>
-                <button class="filter-btn" data-category="book">Book</button>
-                <button class="filter-btn" data-category="hand">Hand</button>
-                <button class="filter-btn" data-category="sports">sports</button>
-                <button class="filter-btn" data-category="flag">Flag</button>
-            </div>            
-            <input id="search" type="text" placeholder="Search Emoji...">
+        <div class="navigation">
+            <div id="emoji-filter">
+                <button class="filter-button" data-category="all">All</button>
+                <button class="filter-button" data-category="face">Faces</button>
+                <button class="filter-button" data-category="heart">Hearts</button>
+                <button class="filter-button" data-category="book">Books</button>
+                <button class="filter-button" data-category="hand">Hands</button>
+                <button class="filter-button" data-category="sports">Sports</button>
+                <button class="filter-button" data-category="flag">Flags</button>
+            </div>
+            <input id="emoji-search" type="text" placeholder="Search for Emojis...">
         </div>
-        <br>
-        <div id="display-emoji"></div>
+        <div id="emoji-display"></div>
     </div>
 
-  
     <script src="emojilist.js"></script>
     <script src="script.js"></script>
 </body>
