@@ -11,13 +11,16 @@ body {
     flex-wrap: wrap;
     flex-direction: column;
     text-align: center;
-    background-color: #ffdfbb;
+    background-color: #92acf5;
     font-family: sans-serif;
     font-size: 25px;
 }
 
 h1 {
-    color: black;
+    color: rgb(136, 29, 129);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 50px;
+    margin-bottom: 10px;
 }
 
 .navigation {
@@ -34,19 +37,20 @@ h1 {
     font-weight: bold;
     padding: 8px;
     border-radius: 5px;
-    background-color: #fdbb8f;
-    color: #000;
+    background-color: #da43e2;
+
+    color: #e9dbdb;
     border: none;
     cursor: pointer;
 }
 
 #emoji-filter button:hover {
-    background-color: #fca56b;
+    background-color: #a01f7c;
 }
 
 #emoji-search {
     padding: 10px 10px 10px 32px;
-    background-image: url("./magnifying-glass.png");
+   
     background-color: #ffffff;
     background-repeat: no-repeat;
     background-size: 20px;
@@ -65,6 +69,7 @@ h1 {
     flex-wrap: wrap;
     text-align: center;
     gap: 20px;
+    background-image: linear-gradient(pink , rgb(243, 179, 190),rgb(230, 195, 201),rgb(243, 160, 174));
 }
 
 #emoji-display span {
